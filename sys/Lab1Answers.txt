@@ -1,0 +1,38 @@
+DEFAULT Xinu Scheduling Policy
+------------------------------
+
+Advantage: Light weight scheduler. Less overhead. No extra storage for 
+quanta.
+
+Disadvantage: Processes with low prioority can starve as higher process 
+will keep getting rescheduled.
+
+=================
+
+LINUXSCHED Policy
+-----------------
+
+Advantage: Avoids starvation as each process will get a quantum to run in 
+each epoch.
+
+Disadvantage: Overhead of computing quantums at each epoch.
+No way to ensure smooth runtime for Real Time processes.
+
+=================
+
+
+MULTIQSCHED Policy
+------------------
+
+Advantage: Processes can be split into multiple queues according to their
+response time requirement. Realtime processes can be scheduled more often than
+normal processes to make their response time less while still ensuring that
+all process will eventually get executed and not starve.
+
+Disadvantage: Overhead of mentaining multiple queues. Scheduling based on
+random number hence a fairness of random function will affect scheduling.
+Realtime process might get delayed response as the random function may not
+select them often enough. Simillarly very high priority processes in normal
+queue might not get enough runtime if we have a large RealTime Queue.
+
+=================
